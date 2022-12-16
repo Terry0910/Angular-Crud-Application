@@ -1,0 +1,29 @@
+{
+  "Company": [
+    {
+      "id": 1,
+      "name": "Meta",
+      "ceo": "Mark Zuckerberg"
+    },
+    {
+      "id": 2,
+      "name": "Apple",
+      "ceo": "Tim Crook"
+    },
+    {
+      "id": 3,
+      "name": "Amazon",
+      "ceo": "Andy Jazzy"
+    },
+    {
+      "id": 4,
+      "name": "Netflix",
+      "ceo": " Reed Hastings"
+    },
+    {
+      "id": 5,
+      "name": "Google",
+      "ceo": "Sundar Pichai"
+    }
+  ]
+}
