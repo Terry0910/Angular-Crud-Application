@@ -7,7 +7,7 @@ import { catchError, Observable, ObservableInput } from 'rxjs';
   providedIn: 'root',
 })
 export class ApiServiceService {
-  urlBase = 'http://localhost:3000/Company';
+  urlBase = 'https://63e73ee1bb286279770f6ebb.mockapi.io/eComm/items';
 
   errorHandler!: (
     err: any,
