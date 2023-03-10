@@ -1,12 +1,20 @@
 <!-- Button trigger modal -->
-<button
+
+
+<div class="d-flex fixed-top p-2" style="background-color: #9dd0a2;">
+ <div class="container-fluid">
+  <button
   type="button"
-  class="btn btn-primary"
+  class="btn"
   data-bs-toggle="modal"
   data-bs-target="#exampleModal"
+  style="background-color:#f6fdfa; border-color: #3f5b43;"
 >
-  Add new Company
+<i class="fa-solid fa-plus" style="color: #3f5b43;" ></i> 
 </button>
+<span class="me-4 mt-2 mx-3" style="color: #f6fdfa;">Add New Company</span>
+ </div>
+<span class="text-uppercase w-25 mt-2">Companies Database</span></div>
 
 <!-- Modal -->
 <div
@@ -18,7 +26,7 @@
 >
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header" style="background-color: #3f5b43; color: #f6fdfa">
         <h5 class="modal-title" id="exampleModalLabel">Add new company</h5>
         <button
           type="button"
@@ -27,10 +35,10 @@
           aria-label="Close"
         ></button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" style="background-color: #9dd0a2;">
         <form #companyForm="ngForm" (ngSubmit)="create()">
           <div class="form-group">
-            <label for="name" class="form-label">Company Name</label>
+            <label for="name" class="form-label" style="color: #f6fdfa">Company Name</label>
             <input
               [(ngModel)]="companies.name"
               name="name"
@@ -41,7 +49,7 @@
             />
           </div>
           <div class="form-group">
-            <label for="description" class="form-label">Company Ceo Name</label>
+            <label for="description" class="form-label" style="color: #f6fdfa">Company Ceo Name</label>
             <input
               [(ngModel)]="companies.ceo"
               name="name"
@@ -53,15 +61,16 @@
           </div>
         </form>
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="background-color: #3f5b43;">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
           Close
         </button>
         <button
           type="button"
-          class="btn btn-primary"
+          class="btn"
           data-bs-dismiss="modal"
           (click)="create()"
+          style="background-color: #f6fdfa; color:#3f5b43"
         >
           Save
         </button>

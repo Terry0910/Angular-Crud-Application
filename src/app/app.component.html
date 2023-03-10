@@ -1,114 +1,138 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar fixed-top" style="background-color: #f6fdfa; color: #3f5b43">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#"
-      >CRUD Project on companies database:
-      <em>[Create Read Update Delete]</em></a
-    >
+    
   </div>
 </nav>
+<br><br>
 
-<br />
-<div class="alert alert-primary" role="alert">Companies Database</div>
-<app-post-method (add)="add($event)"></app-post-method>
-<div class="card">
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <!-- <th scope="col">Id</th> -->
-        <th scope="col">Company Name</th>
-        <th scope="col">CEO</th>
-        <th scope="col">Action</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let company of database; let i = index">
-        <!-- <td>{{ company.id }}</td> -->
-        <td>{{ company.name }}</td>
-        <td>{{ company.ceo }}</td>
-        <td>
-          <!-- Button trigger modal -->
+<app-post-method class="me-4" (add)="add($event)"></app-post-method>
+<div class="container-fluid mt-5" style="background-color: #f6fdfa; height: 88.5vh">
+  <div class="card">
+    <table
+      class="table table-hover text-center"
+      style="background-color: #f6fdfa; color: #3f5b43"
+    >
+      <thead style="background-color: #3f5b43; color: #f6fdfa;">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Company Name</th>
+          <th scope="col">CEO</th>
+          <th scope="col">Edit / Delete</th>
+        </tr>
+      </thead>
+      <tbody style="background-color: #9dd0a2; color: #f6fdfa">
+        <tr *ngFor="let company of database; let i = index">
+          <td>{{ company.id }}</td>
+          <td>{{ company.name }}</td>
+          <td>{{ company.ceo }}</td>
+          <td class="text-center">
+            <!-- Button trigger modal -->
+            <button
+              (click)="edit(company.id)"
+              type="button"
+              class="btn"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal1"
+              style="background-color: #f6fdfa; color: #3f5b43"
+            >
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button
+              (click)="remove(company.id)"
+              class="btn mx-3"
+              style="background-color: #f6fdfa; color: #3f5b43"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <br />
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="exampleModal1"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header" style="background-color: #3f5b43; color: #f6fdfa">
+          <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
           <button
-            (click)="edit(company.id)"
             type="button"
-            class="btn btn-warning"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal1"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body" style="background-color: #9dd0a2;">
+          <form>
+            <div class="form-group">
+              <label for="name" class="form-label">Company Name</label>
+              <input
+                [(ngModel)]="company.name"
+                name="name"
+                type="text"
+                class="form-control"
+                placeholder="Company Name"
+              />
+            </div>
+            <div class="form-group">
+              <label for="description" class="form-label"
+                >Company Ceo Name</label
+              >
+              <input
+                [(ngModel)]="company.ceo"
+                name="ceo"
+                type="text"
+                class="form-control"
+                placeholder="Ceo Name"
+              />
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer" style="background-color: #3f5b43;">
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
           >
-            Edit
+            Close
           </button>
-          <button (click)="remove(company.id)" class="btn btn-warning">
-            Delete
+          <button
+            type="button"
+            class="btn"
+            data-bs-dismiss="modal"
+            (click)="updateCompany()"
+            style="background-color: #f6fdfa; color: #3f5b43"
+          >
+            Save changes
           </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<br />
-
-<!-- Button trigger modal -->
-<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-  Launch demo modal
-</button> -->
-
-<!-- Modal -->
-<div
-  class="modal fade"
-  id="exampleModal1"
-  tabindex="-1"
-  aria-labelledby="exampleModalLabel"
-  aria-hidden="true"
->
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Company</h5>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="modal"
-          aria-label="Close"
-        ></button>
-      </div>
-      <div class="modal-body">
-        <form>
-          <div class="form-group">
-            <label for="name" class="form-label">Company Name</label>
-            <input
-              [(ngModel)]="company.name"
-              name="name"
-              type="text"
-              class="form-control"
-              placeholder="Company Name"
-            />
-          </div>
-          <div class="form-group">
-            <label for="description" class="form-label">Company Ceo Name</label>
-            <input
-              [(ngModel)]="company.ceo"
-              name="ceo"
-              type="text"
-              class="form-control"
-              placeholder="Ceo Name"
-            />
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
-          Close
-        </button>
-        <button
-          type="button"
-          class="btn btn-primary"
-          data-bs-dismiss="modal"
-          (click)="updateCompany()"
-        >
-          Save changes
-        </button>
+        </div>
       </div>
     </div>
   </div>
 </div>
+
+<footer class="bg-dark text-white fixed-bottom p-2">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-md-6" style="color:#f6fdfa;">
+        <img src="assets/pngfind.com-gnc-logo-png-2515206.png" alt="Angular Logo" height="30" class="mr-2 mb-1">
+        <span class="font-weight-bold mx-3">CRUD Method</span>
+      </div>
+      <div class="col-md-6 text-md-right">
+        <a href="https://github.com/terencebundela" target="_blank" class="fs-5" style="color:#9dd0a2;">
+          <i class="fab fa-github fa-lg mr-2"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <router-outlet></router-outlet>
